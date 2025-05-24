@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Animate Hero Text */
+@layer utilities {
+  @keyframes revealFromBottom {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-reveal {
+    overflow: hidden;
+    display: inline-block;
+    animation: revealFromBottom 1s ease-out forwards;
+  }
+  /* Animate Hero Text */
+
+  .animate-reveal2 {
+    overflow: hidden;
+    display: inline-block;
+    animation: revealFromBottom 1.3s ease-out forwards;
+  }
+
+  .reveal-wrapper {
+    overflow: hidden;
+    display: inline-block;
+  }
+
+  @keyframes slide-left {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .animate-slide-left {
+    animation: slide-left 10s linear infinite;
+  }
+}
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
