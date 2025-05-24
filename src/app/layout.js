@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./Components/Navbar";
+import Footer from "./Components/footer";
 
 const inter = Inter({
   //variable: "--font-geist-sans",
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
           <Navbar />
         </header>
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

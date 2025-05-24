@@ -1,4 +1,6 @@
+import AboutMe from "./Components/About";
 import BrandWorked from "./Components/brands";
+import Footer from "./Components/footer";
 import HeroSection from "./Components/hero_section";
 import NewProject from "./Components/newProject";
 import ProjectCard from "./Components/project/project_card";
@@ -9,9 +11,10 @@ export default function Home() {
     <div className="flex flex-col">
       <HeroSection />
       <ProjectCard />
+      <BrandWorked />
       <NewProject />
       <TechStack />
-      <BrandWorked />
+      <AboutMe />
     </div>
   );
 }

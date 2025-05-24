@@ -17,7 +17,7 @@ export default function Navbar() {
     <>
       {isMenuOpen ? (
         <div>
-          <nav className="flex flex-col gap-2  my-4">
+          <nav className="w-5/6 flex flex-col gap-2  my-4 fixed">
             <ul>
               <li className="flex items-center justify-between my-0">
                 <Link
@@ -75,7 +75,7 @@ export default function Navbar() {
 
       {/* Larger screen Menu */}
       <div className="hidden md:block">
-        <nav className=" flex justify-between my-8">
+        <nav className="w-5/6 flex justify-between my-2 fixed">
           <div>
             <ul>
               <li>
