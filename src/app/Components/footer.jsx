@@ -8,28 +8,28 @@ export default function Footer() {
         <Link
           href="/"
           target="blank"
-          className="border p-2 hover:bg-white hover:text-black transition ease-in-out duration-700"
+          className="font-light p-2 hover:bg-white hover:text-black transition ease-in-out duration-700"
         >
           Instagram
         </Link>
         <Link
           href="/"
           target="blank"
-          className="border p-2 hover:bg-white hover:text-black transition ease-in-out duration-700"
+          className="font-light p-2 hover:bg-white hover:text-black transition ease-in-out duration-700"
         >
           Twitter
         </Link>
         <Link
-          href="/"
+          href="/https://github.com/Ken12222"
           target="blank"
-          className="border p-2 hover:bg-white hover:text-black transition ease-in-out duration-700"
+          className="font-light p-2 hover:bg-white hover:text-black transition ease-in-out duration-700"
         >
           GitHub
         </Link>
         <Link
-          href="/"
+          href="/https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile"
           target="blank"
-          className="border p-2 hover:bg-white hover:text-black transition ease-in-out duration-700"
+          className="font-light p-2 hover:bg-white hover:text-black transition ease-in-out duration-700"
         >
           LinkedIn
         </Link>

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Ken from "../../../public/Ken.jpg";
 import Link from "next/link";
+import Button from "./button";
 
 export default function AboutMe() {
   return (
@@ -24,12 +25,13 @@ export default function AboutMe() {
             gain a decent amount of experience and valuable knowledge from all
             different kinds of fields throughout my projects/work.
           </p>
-          <Link
+          <Button hrefName={"/contact"} buttonName={"Connect"} />
+          {/* <Link
             href="/contact"
             className="border py-2 px-4 my-4 w-fit hover:bg-white hover:text-black font-light transition ease-in-out duration-700"
           >
             Connect
-          </Link>
+          </Link> */}
         </div>
       </article>
     </>

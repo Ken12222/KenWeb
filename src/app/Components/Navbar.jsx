@@ -57,7 +57,7 @@ export default function Navbar() {
           </nav>
         </div>
       ) : (
-        <nav className="flex justify-between my-8">
+        <nav className="flex justify-between my-4">
           <div className="block md:hidden">
             <ul>
               <li>
@@ -75,7 +75,7 @@ export default function Navbar() {
 
       {/* Larger screen Menu */}
       <div className="hidden md:block">
-        <nav className="w-5/6 flex justify-between my-2 fixed">
+        <nav className="w-5/6 flex justify-between p-4 fixed z-10 top-0">
           <div>
             <ul>
               <li>
@@ -88,7 +88,7 @@ export default function Navbar() {
               <li>
                 <Link
                   href="/projects"
-                  className="p-4 items-center border-b border-transparent hover:border-white transition ease-in-out duration-700"
+                  className="font-light p-4 items-center border-b border-transparent hover:border-white transition ease-in-out duration-700"
                 >
                   Projects
                 </Link>
@@ -99,7 +99,7 @@ export default function Navbar() {
                 <Link
                   href="/Resume"
                   download=""
-                  className="p-4 items-center border-b border-transparent hover:border-white transition ease-in-out duration-700"
+                  className="font-light p-4 items-center border-b border-transparent hover:border-white transition ease-in-out duration-700"
                 >
                   Resume
                 </Link>
@@ -109,7 +109,7 @@ export default function Navbar() {
               <li>
                 <Link
                   href="/contact"
-                  className="p-4 items-center border-b border-transparent hover:border-white transition ease-in-out duration-700"
+                  className="font-light p-4 items-center border-b border-transparent hover:border-white transition ease-in-out duration-700"
                 >
                   Contact
                 </Link>
