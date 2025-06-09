@@ -14,7 +14,7 @@ export default function BrandWorked() {
         {/* <p className="font-extralight text-center py-6 text-gray-300">
           BRANDS I WORKED WITH
         </p> */}
-        <div className="animate-slide-lef items-center flex justify-between gap-8">
+        <div className="animate-slide-left items-center flex justify-between gap-8">
           <Link href="/">
             <Image
               src={duafe}
