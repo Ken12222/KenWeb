@@ -33,7 +33,7 @@ export default function AdminDashboard() {
   return (
     <main className="w-5/6 mx-auto my-16">
       <Button
-        hrefName={"admin/dashboard/projects"}
+        hrefName={"/admin/dashboard/projects"}
         buttonName={"All Projects"}
       />
       <h1 className="mt-4">Add New Project</h1>

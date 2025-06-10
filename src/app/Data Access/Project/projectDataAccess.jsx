@@ -30,6 +30,7 @@ export async function createProject(projectData) {
 }
 
 export async function updateProject(projectId, projectData) {
+  await Cookyes();
   const updateProject = await prisma.project.update({
     where: {
       id: projectId,
@@ -42,11 +43,7 @@ export async function updateProject(projectId, projectData) {
     },
   });
 
-  updateProject
-    ? NextResponse.json({ success: "You have successfully updated Project" })
-    : NextResponse.json({
-        errors: "Failed to update project. Try again later",
-      });
+  return updateProject;
 }
 
 export async function deleteProject(projectId) {
