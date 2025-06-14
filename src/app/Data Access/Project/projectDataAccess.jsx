@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
 import { Cookyes } from "@/app/Session/cookies";
+import { saveImages } from "@/app/Action/Project/saveImages";
 
 const prisma = new PrismaClient();
 
@@ -11,22 +12,42 @@ export async function FetchProjects() {
 }
 
 export async function ShowProjects(projectId) {
-  return <>This are all the projects</>;
-}
-
-export async function createProject(projectData) {
-  await Cookyes();
-  const addProject = await prisma.project.create({
-    data: {
-      projectTitle: projectData.data.title,
-      overview: projectData.data.overview,
-      myrole: projectData.data.role,
-      challenge: projectData.data.challenge,
+  const ID = parseInt(projectId);
+  return await prisma.project.findFirst({
+    where: {
+      id: ID,
+    },
+    include: {
+      ProjectImage: true,
     },
   });
+}
 
-  if (addProject) return { success: true };
-  if (!addProject) return { errors: "failed" };
+export async function createProject(projectData, uploadPath) {
+  await Cookyes();
+  const [project, projectImages] = await prisma.$transaction(async (tx) => {
+    const project = await tx.project.create({
+      data: {
+        projectTitle: projectData.data.title,
+        overview: projectData.data.overview,
+        myrole: projectData.data.role,
+        challenge: projectData.data.challenge,
+      },
+    });
+
+    const projectImages = await tx.projectImages.create({
+      data: {
+        title_image: uploadPath[0],
+        overview_img: uploadPath[1],
+        role_img: uploadPath[2],
+        projectID: project.id,
+      },
+    });
+
+    return [project, projectImages];
+  });
+
+  return { project, projectImages };
 }
 
 export async function updateProject(projectId, projectData) {

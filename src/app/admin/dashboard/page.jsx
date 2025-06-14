@@ -8,16 +8,16 @@ import createProjectAction from "@/app/Action/Project/createProject";
 import { saveImages } from "@/app/Action/Project/saveImages";
 
 export default function AdminDashboard() {
-  const [state, formAction] = useActionState(createProjectAction, {
-    errors: {},
-    success: {},
-  });
   const [status, setStatus] = useState("");
   async function handleSaveImage(e) {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
 
     const formData = {
+      title: form.get("title"),
+      overview: form.get("overview"),
+      role: form.get("role"),
+      challenge: form.get("challenge"),
       titleImg: form.get("title_img"),
       overviewImg: form.get("overview_img"),
       roleImg: form.get("role_img"),
@@ -37,38 +37,39 @@ export default function AdminDashboard() {
         buttonName={"All Projects"}
       />
       <h1 className="mt-4">Add New Project</h1>
-      <form className="mb-8" action={formAction}>
+      <form
+        className="mb-8"
+        onSubmit={handleSaveImage}
+        encType="multipart/form-data"
+      >
         <TextField
           fieldType={"text"}
           fieldName={"title"}
           placetext={"Please enter project title"}
         />
-        {state && <p className="text-red-400">{state.errors.title}</p>}
+        {status && <p className="text-red-400">{status.title}</p>}
 
         <TextField
           fieldType={"text"}
           fieldName={"overview"}
           placetext={"Please enter project overview"}
         />
-        {state && <p className="text-red-400">{state.errors.title}</p>}
+        {status && <p className="text-red-400">{status.title}</p>}
 
         <TextField
           fieldType={"text"}
           fieldName={"role"}
           placetext={"Please enter role"}
         />
-        {state && <p className="text-red-400">{state.errors.title}</p>}
+        {status && <p className="text-red-400">{status.title}</p>}
 
         <TextField
           fieldType={"text"}
           fieldName={"challenge"}
           placetext={"Please enter challenge"}
         />
-        {state && <p className="text-red-400">{state.errors.title}</p>}
-        <button className="border py-2 px-4">Submit</button>
-      </form>
+        {status && <p className="text-red-400">{status.title}</p>}
 
-      <form onSubmit={handleSaveImage} encType="multipart/form-data">
         <InputField
           fieldType={"file"}
           fieldName={"title_img"}
@@ -96,7 +97,12 @@ export default function AdminDashboard() {
             Images Uploaded Successfully
           </p>
         )}
-        <button className="border py-2 px-4">Save Images</button>
+        {status.errors && (
+          <p className="text-red-600 bg-green-300 p-4 rounded mb-4">
+            Image Uploaded Failed
+          </p>
+        )}
+        <button className="border py-2 px-4">Submit</button>
       </form>
     </main>
   );

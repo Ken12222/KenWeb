@@ -5,10 +5,11 @@ import { NextResponse } from "next/server";
 const prisma = new PrismaClient();
 
 export async function GET() {
-  const AllProject = await prisma.project.findFirst({
-    where: {
-      id: 10,
+  const AllProject = await prisma.project.findMany({
+    include: {
+      ProjectImage: true,
     },
   });
+
   return NextResponse.json(AllProject);
 }

@@ -3,9 +3,22 @@
 import { NextResponse } from "next/server";
 import { writeFile } from "fs/promises";
 import path from "path";
-import { InsertImages } from "@/app/Data Access/Images/ProjectImages";
+//import { InsertImages } from "@/app/Data Access/Images/ProjectImages";
+import { createProject } from "@/app/Data Access/Project/projectDataAccess";
+import { ProjectformValidation } from "./ProjectFormValidation/ProjectformValidation";
 
 export async function saveImages(formData) {
+  const validatedForm = ProjectformValidation.safeParse({
+    title: formData.title,
+    overview: formData.overview,
+    role: formData.role,
+    challenge: formData.challenge,
+  });
+
+  if (!validatedForm.success) {
+    return { errors: validatedForm.error.flatten().fieldErrors };
+  }
+
   try {
     if (
       formData.titleImg.name == "undefined" &&
@@ -91,16 +104,27 @@ export async function saveImages(formData) {
       path.join(process.cwd(), "public/uploads", formData.roleImg.name),
     ];
 
+    const dbUploadPath = [
+      "/uploads/" + formData.titleImg.name,
+      "/uploads/" + formData.overviewImg.name,
+      "/uploads/" + formData.roleImg.name,
+    ];
+
     await writeFile(uploadPath[0], buffer[0]);
     await writeFile(uploadPath[1], buffer[1]);
     await writeFile(uploadPath[2], buffer[2]);
 
-    //import prisma and save image path in db
-    await InsertImages(uploadPath);
+    const newProject = await createProject(validatedForm, dbUploadPath);
 
-    return { success: true };
+    if (newProject) {
+      return { success: true };
+    } else {
+      {
+        errors: true;
+      }
+    }
   } catch (err) {
     console.error("Upload failed:", err);
-    return { error: "Upload failed. Please try again." };
+    return { errors: "Upload failed. Please try again." };
   }
 }
